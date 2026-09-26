@@ -51,11 +51,15 @@ export function PlanProvider({ children }: { children: ReactNode }) {
 
   // Read localStorage only after mount so the server-rendered HTML and the
   // first client render match (avoids hydration errors on every route).
+  // Syncing from an external system (localStorage) on mount is exactly what
+  // this effect is for, so the state updates here are intentional.
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     setPlan(readStorage(PLAN_KEY));
     setSaved(readStorage(SAVED_KEY));
     setHydrated(true);
   }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   useEffect(() => {
     if (!hydrated) return;
