@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FitLog — Workout Library
+
+A dark, no-nonsense gym companion built for the B14-A6 assignment. Browse a
+12-lift workout library, drill into any lift for full instructions, and build
+out "today's plan" — with everything you add or save sticking around after a
+refresh.
+
+## Live Demo
+
+- **Live link:** _add your deployed Vercel URL here_
+- **Repo:** _add your GitHub repo link here_
+
+## Tech Stack
+
+- **Next.js 16** (App Router)
+- **React 19** + **TypeScript**
+- **Tailwind CSS v4**
+- **lucide-react** — icon set
+- **react-hot-toast** — toast notifications
+- Data from a public REST API (`api.abcz.workers.dev/api/fitlog`)
+
+## Features
+
+1. **12-lift workout library** with category tags, equipment, and a live stats
+   row (duration / calories / rating), fully responsive as a 3-column grid on
+   desktop down to a single column on mobile.
+2. **Workout detail pages** (`/workout/[id]`) with a specs table and
+   step-by-step instructions, plus one-click **Add to today's plan** and
+   **Save for later** actions.
+3. **My Plan dashboard** (`/my-plan`) with live-updating Exercises / Minutes /
+   Calories totals, tabbed Today's Plan / Saved lists, a sort dropdown
+   (Duration / Calories / Rating), and a "Mark as Done" / remove flow for
+   each planned lift.
+4. **Persistent state** — your plan and saved lists are stored in
+   `localStorage`, so they survive a page reload, and the plan is capped at
+   5 lifts to match the "cap of five" rule.
+5. **Search** the library by workout name or muscle group tag, a friendly
+   404 page for unknown routes, and toast feedback on every action.
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Adding your own logo & banner
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Drop your image files into `public/assets/`:
 
-## Learn More
+- `public/assets/logo.png` — used if you swap the inline SVG mark in
+  `components/Logo.tsx` for an `<Image>` tag.
+- `public/assets/banner.png` — already wired up in `components/Hero.tsx`;
+  just replace the placeholder file with your own artwork (keep the same
+  filename, or update the `src` in `Hero.tsx`).
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+app/
+  page.tsx              Home (hero + library grid)
+  workout/[id]/page.tsx Workout detail page
+  my-plan/page.tsx       My Plan dashboard
+  not-found.tsx          404 page
+components/              Reusable UI (Navbar, WorkoutCard, PlanCard, ...)
+context/PlanContext.tsx  Global plan/saved state + localStorage sync
+lib/                     API client, types, helpers
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Deployed on Vercel. Every route is client- or server-rendered per Next.js
+defaults, so a hard reload on any page (including `/workout/3` or `/my-plan`)
+works without errors.
