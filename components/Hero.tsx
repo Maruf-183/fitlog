@@ -22,7 +22,7 @@ export default function Hero() {
             href="#library"
             className="mt-6 inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-bold text-bg transition-opacity hover:opacity-90"
           >
-            Browse workouts
+            BROWSE WORKOUTS
             <ArrowRight size={16} />
           </a>
         </div>
@@ -31,6 +31,7 @@ export default function Hero() {
             src="/assets/banner.png"
             alt="FitLog"
             fill
+            sizes="(min-width: 640px) 256px, 192px"
             className="object-contain"
             priority
           />
