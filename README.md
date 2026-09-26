@@ -7,8 +7,8 @@ refresh.
 
 ## Live Demo
 
-- **Live link:** _add your deployed Vercel URL here_
-- **Repo:** _add your GitHub repo link here_
+Live link: https://fitlog-beryl.vercel.app/
+Repo: https://github.com/Maruf-183/fitlog
 
 ## Tech Stack
 
@@ -46,15 +46,13 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-### Adding your own logo & banner
+### Branding Assets
 
 Drop your image files into `public/assets/`:
 
-- `public/assets/logo.png` — used if you swap the inline SVG mark in
-  `components/Logo.tsx` for an `<Image>` tag.
-- `public/assets/banner.png` — already wired up in `components/Hero.tsx`;
-  just replace the placeholder file with your own artwork (keep the same
-  filename, or update the `src` in `Hero.tsx`).
+Logo and hero banner live in `public/assets/` (`logo.png`, `banner.png`)
+and are rendered via `components/Logo.tsx` and `components/Hero.tsx`.
+Swap those two files to rebrand the app.
 
 ## Project Structure
 
